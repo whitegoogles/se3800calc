@@ -16,26 +16,35 @@ public class HistoryTester {
     @After
     public void tearDown() throws Exception {
     }
-
+    @Test
+    public void testAddHistory(){
+        
+    }
     @Test
     public void testShowHistory() {
         
     }
+    @Test
     public void testEmptyHistory(){
         
     }
+    @Test
     public void testMaxHistory(){
         
     }
+    @Test
     public void testClearHistory(){
         
     }
+    @Test
     public void testClearHistoryEmpty(){
         
     }
+    @Test
     public void testGetHistory(){
         
     }
+    @Test
     public void testGetHistoryBadIndex(){
         
     }
