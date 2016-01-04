@@ -7,5 +7,5 @@ public interface CalculatorInterface {
 	public double sub(List<Double> doubles) throws ParamsException;
 	public double mult(List<Double> doubles) throws ParamsException;
 	public double div(List<Double> doubles) throws ParamsException;
-	public double factorial(List<Double> doubles) throws ParamsException;
+	public double factorial(long factorial) throws ParamsException;
 }
