@@ -27,7 +27,7 @@ public class Calculator implements CalculatorInterface{
 			quotient/=curDbl;
 			
 			//Its only supposed to return the quotient, not the remainder or w/e
-			Math.floor(quotient); 
+			quotient = Math.floor(quotient); 
 		}
 		return quotient;  
 	}
