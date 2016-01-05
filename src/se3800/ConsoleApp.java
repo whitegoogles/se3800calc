@@ -3,7 +3,22 @@ package se3800;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
+/**
+ * Runs the entire project. Collects information
+ * from the console and feeds it to the calculator and history
+ * objects. We chose not to use a complicated pattern because
+ * modifiability/extensibility is not a concern at all, so its
+ * complete legitimate to use a standard design here. We don't plan 
+ * to change this after we submit it, so if we can get it to pass
+ * the requirements specified and its still fairly clean code
+ * there's no point in putting massive amounts of effort into
+ * using a Command pattern or maybe a Subscriber model. If we
+ * were adding unspecified methods to the calculator later on
+ * or something like that, it would make more sense to use a 
+ * pattern like this.
+ * @author daviesj
+ *
+ */
 public class ConsoleApp {
     private CalculatorInterface calculator;
     private HistoryInterface history;
@@ -12,7 +27,10 @@ public class ConsoleApp {
     public static void main(String [] args){
         ConsoleApp app = new ConsoleApp();
     }
-    
+    /**
+     * Creates the scanner and reads from it until
+     * the exit command is issued.
+     */
     public ConsoleApp(){
         Scanner sc = new Scanner(System.in);
         calculator = new Calculator();
@@ -25,14 +43,22 @@ public class ConsoleApp {
             }
         }
     }
-    
+    /**
+     * Returns the menu text;
+     * @return The text for the menu
+     */
     public String getMenu(){
         String command ="Calculator commands are: add,mul,div,sub, and fact.\n";
         command+= "History commands are: clear, and hist.\n";
         command+= "Program commands are: exit.\n";
         return command;
     }
-    
+    /**
+     * Parses a line into the appropriate command, executes the command,
+     * and returns the result.
+     * @param line A string of input from the user (or wherever).
+     * @return The result of the command.
+     */
     public String parseLine(String line){
         String [] words = line.trim().split(" ");
         List<Double> dblsList = new ArrayList();;
@@ -105,7 +131,12 @@ public class ConsoleApp {
         }
         return message+"\n";
     }
-    
+    /**
+     * Parses a list of doubles from a string (skips the first one
+     * because its a command).
+     * @param dblStrings The list of strings to parse into doubles
+     * @return The doubles from the parsed strings
+     */
     public List<Double> getDoubles(String [] dblStrings){
         List<Double> dbls = new ArrayList();
         for(int i = 1; i<dblStrings.length; i++){
@@ -123,7 +154,9 @@ public class ConsoleApp {
         }
         return dbls;
     }
-    
+    /**
+     * Signals the program to quit.
+     */
     public void exit(){
         exit = true;
     }
