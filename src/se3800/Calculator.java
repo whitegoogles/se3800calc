@@ -41,7 +41,12 @@ public class Calculator implements CalculatorInterface{
 			quotient/=curDbl;
 			
 			//Its only supposed to return the quotient, not the remainder or w/e
-			quotient = Math.floor(quotient); 
+			if(quotient>0){
+			    quotient = Math.floor(quotient); 
+			}
+			else{
+			    quotient = Math.ceil(quotient);
+			}
 		}
 		return quotient;  
 	}
@@ -59,8 +64,14 @@ public class Calculator implements CalculatorInterface{
 	/**
      * @see CalculatorInterface#factorial
      */
-	public double factorial(long factorial) throws ParamsException {
-	    if(factorial<0){
+	public double factorial(double factorial) throws ParamsException {
+	    if(factorial>0 && Double.isInfinite(factorial)){
+	        return Double.POSITIVE_INFINITY;
+	    }
+	    else if(Double.isNaN(factorial)){
+	        return Double.NaN;
+	    }
+	    else if(factorial<0 || Math.round(factorial)!=factorial){
 	        throw new ParamsException();
 	    }
 	    else if(factorial == 0){
@@ -68,7 +79,7 @@ public class Calculator implements CalculatorInterface{
 	    }
 	    else{
 	        double result = 1;
-	        for(long i = factorial; i>0; i--){
+	        for(double i = factorial; i>0; i--){
 	            result*=i;
 	        }
 	        return result;
