@@ -17,7 +17,7 @@ import se3800.ParamsException;
 /**
  * Tests the Calculator class
  * @author boddyn
- * @version 2016.01.05.1
+ * @version 2016.01.06.1
  */
 public class CalculatorTester {
     
@@ -731,6 +731,19 @@ public class CalculatorTester {
             assert false;
         } catch (NegativeException e) {
             assert true;
+        }
+        assert false;
+    }
+    
+    @Test
+    public void testFactorial7() {
+        Double testValue = new Double(4.5);
+        try {
+            myCalculator.factorial(testValue);
+        } catch (ParamsException e) {
+            assert true;
+        } catch (NegativeException e) {
+            assert false;
         }
         assert false;
     }
