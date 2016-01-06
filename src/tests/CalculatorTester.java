@@ -690,14 +690,12 @@ public class CalculatorTester {
     @Test
     public void testFactorial4() {
         Double testValue = Double.NEGATIVE_INFINITY;
-        Double expected = Double.NaN;
-        Double actual = Double.NaN;
         try {
-            actual = myCalculator.factorial(testValue);
+            myCalculator.factorial(testValue);
         } catch (ParamsException e) {
-            fail();
+            assert true;
         }
-        assertEquals(expected, actual, 0.001);
+        assert false;
     }
     
     @Test
