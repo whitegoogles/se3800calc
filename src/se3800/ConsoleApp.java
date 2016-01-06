@@ -34,6 +34,10 @@ public class ConsoleApp {
         ConsoleApp app = new ConsoleApp();
         app.startParsing();
     }
+    public ConsoleApp(){
+        calculator = new Calculator();
+        history = new History(1000);
+    }
     /**
      * Creates the scanner and reads from it until
      * the exit command is issued. Note that
@@ -41,8 +45,6 @@ public class ConsoleApp {
      */
     public void startParsing(){
         Scanner sc = new Scanner(System.in);
-        calculator = new Calculator();
-        history = new History(1000);
         System.out.println(command);
         while(!exit && sc.hasNextLine()){
             System.out.println(parseLine(sc.nextLine()));
