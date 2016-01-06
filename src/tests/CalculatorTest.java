@@ -7,22 +7,25 @@ import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.Timeout;
 
 import se3800.Calculator;
-import se3800.CalculatorInterface;
 import se3800.NegativeException;
 import se3800.ParamsException;
+import se3800.CalculatorInterface;
 
 /**
  * Tests the Calculator class
  * @author boddyn
  * @version 2016.01.05.1
  */
-public class CalculatorTester {
+public class CalculatorTest {
     
     CalculatorInterface myCalculator;
-    
+    @Rule
+    public Timeout globalTimeout = Timeout.seconds(1);
     @Before
     public void setUp() throws Exception {
         myCalculator = new Calculator();

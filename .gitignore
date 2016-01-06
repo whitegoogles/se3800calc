@@ -4,3 +4,4 @@
 .project
 *.bak
 *.orig
+/target/

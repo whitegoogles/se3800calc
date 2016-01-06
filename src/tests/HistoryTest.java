@@ -4,13 +4,18 @@ import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.Timeout;
 
 import se3800.History;
 import se3800.HistoryInterface;
 
-public class HistoryTester {
+public class HistoryTest {
     HistoryInterface myHistory;
+    @Rule
+    public Timeout globalTimeout = Timeout.seconds(1);
+    
     @Before
     public void setUp() throws Exception {
         myHistory = new History(20);
