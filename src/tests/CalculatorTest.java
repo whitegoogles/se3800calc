@@ -702,12 +702,12 @@ public class CalculatorTest {
         Double testValue = Double.NEGATIVE_INFINITY;
         try {
             myCalculator.factorial(testValue);
+            fail();
         } catch (ParamsException e) {
             fail();
         } catch (NegativeException e) {
             // it's good
         }
-        fail();
     }
     
     @Test
@@ -730,12 +730,12 @@ public class CalculatorTest {
         Double testValue = new Double(-5);
         try {
             myCalculator.factorial(testValue);
+            fail();
         } catch (ParamsException e) {
             fail();
         } catch (NegativeException e) {
             // it's good
         }
-        fail();
     }
     
     @Test
@@ -743,12 +743,12 @@ public class CalculatorTest {
         Double testValue = new Double(4.5);
         try {
             myCalculator.factorial(testValue);
+            fail();
         } catch (ParamsException e) {
             // it's good
         } catch (NegativeException e) {
             fail();
         }
-        fail();
     }
     
     @Test
@@ -757,10 +757,10 @@ public class CalculatorTest {
         doubles.add(new Double(1));
         try {
             myCalculator.add(doubles);
+            fail();
         } catch (ParamsException e) {
             // it's good
         }
-        fail();
     }
 
 }
