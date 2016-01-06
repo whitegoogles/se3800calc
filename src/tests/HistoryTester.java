@@ -27,7 +27,7 @@ public class HistoryTester {
             myHistory.addResult(result);
         }
         for(int i = 0; i<addFive.length; i++){
-            assertEquals(addFive[i],myHistory.getResult(i+1));
+            assertEquals(addFive[addFive.length-1-i],myHistory.getResult(i+1));
         }
     }
     @Test
@@ -38,16 +38,17 @@ public class HistoryTester {
             myHistory.addResult(result);
         }
         for(int i = 0; i<results.length; i++){
-            assertEquals(results[i],myHistory.getResult(i+1));
+            assertEquals(results[results.length-1-i],myHistory.getResult(i+1));
         }
     }
     @Test
     public void testMaxHistory(){
+        myHistory = new History(1000);
         for(int i = 0; i<=1001; i++){
             myHistory.addResult(""+i);
         }
         for(int i = 0; i<1000; i++){
-            assertEquals(i+1,myHistory.getResult(i+1));
+            assertEquals(""+(1001-i),myHistory.getResult(i+1));
         }
     }
     @Test
@@ -60,7 +61,7 @@ public class HistoryTester {
         
         //This should throw an exception or something
         try{
-            myHistory.getResult(0); 
+            myHistory.getResult(1); 
             fail(); 
         }
         catch(Exception e){

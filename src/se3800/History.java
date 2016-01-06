@@ -61,7 +61,9 @@ public class History implements HistoryInterface {
             removedStr = history.get(maxNumValues - 1);
         }
         history.add(0, result);
-        history.remove(history.size() - 1);
+        if (history.size() > maxNumValues) {
+            history.remove(history.size() - 1);
+        }
         return removedStr;
     }
 

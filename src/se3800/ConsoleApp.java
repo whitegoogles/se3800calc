@@ -29,9 +29,10 @@ public class ConsoleApp {
     }
     /**
      * Creates the scanner and reads from it until
-     * the exit command is issued.
+     * the exit command is issued. Note that
+     * this will hang.
      */
-    public ConsoleApp(){
+    public void startParsing(){
         Scanner sc = new Scanner(System.in);
         calculator = new Calculator();
         history = new History(1000);
