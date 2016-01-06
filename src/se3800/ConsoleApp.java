@@ -17,15 +17,20 @@ import java.util.Scanner;
  * or something like that, it would make more sense to use a 
  * pattern like this.
  * @author daviesj
- *
+ * @author boddyn
+ * @version 2016.01.06.1
  */
 public class ConsoleApp {
+    
     private CalculatorInterface calculator;
+    
     private HistoryInterface history;
+    
     private boolean exit;
     
     public static void main(String [] args){
         ConsoleApp app = new ConsoleApp();
+        app.startParsing();
     }
     /**
      * Creates the scanner and reads from it until
@@ -49,7 +54,7 @@ public class ConsoleApp {
      * @return The text for the menu
      */
     public String getMenu(){
-        String command ="Calculator commands are: add,mul,div,sub, and fact.\n";
+        String command ="Calculator commands are: add, mult, div, sub, and fact.\n";
         command+= "History commands are: clear, and hist.\n";
         command+= "Program commands are: exit.\n";
         return command;
@@ -62,7 +67,7 @@ public class ConsoleApp {
      */
     public String parseLine(String line){
         String [] words = line.trim().split(" ");
-        List<Double> dblsList = new ArrayList();;
+        List<Double> dblsList = new ArrayList<Double>();;
         for(int i = 0; i<words.length;i++){
             words[i].trim();
         }
@@ -117,8 +122,11 @@ public class ConsoleApp {
                     exit();
                     break;
                 case "clear":
+                    history.clear();
+                    message = "History cleared";
                     break;
                 case "hist":
+                    message = showHistory(history);
                     break;
                     
                 }
@@ -139,7 +147,7 @@ public class ConsoleApp {
      * @return The doubles from the parsed strings
      */
     public List<Double> getDoubles(String [] dblStrings){
-        List<Double> dbls = new ArrayList();
+        List<Double> dbls = new ArrayList<Double>();
         for(int i = 1; i<dblStrings.length; i++){
             try{
                 if(dblStrings[i].startsWith("!")){
@@ -159,6 +167,22 @@ public class ConsoleApp {
         }
         return dbls;
     }
+    
+    private String showHistory(HistoryInterface history) {
+        String hist = "";
+        int i = 1;
+        boolean isMoreHistory = true;
+        while (isMoreHistory) {
+            try {
+                hist = "" + i + ": " + history.getResult(i) + "\n" + hist;
+            } catch (IndexOutOfBoundsException ioobe) {
+                isMoreHistory = false;
+            }
+            i++;
+        }
+        return hist;
+    }
+    
     /**
      * Signals the program to quit.
      */
