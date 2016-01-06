@@ -8,7 +8,7 @@ import java.util.Scanner;
  * from the console and feeds it to the calculator and history
  * objects. We chose not to use a complicated pattern because
  * modifiability/extensibility is not a concern at all, so its
- * complete legitimate to use a standard design here. We don't plan 
+ * completely legitimate to use a standard design here. We don't plan 
  * to change this after we submit it, so if we can get it to pass
  * the requirements specified and its still fairly clean code
  * there's no point in putting massive amounts of effort into
@@ -34,7 +34,7 @@ public class ConsoleApp {
     public ConsoleApp(){
         Scanner sc = new Scanner(System.in);
         calculator = new Calculator();
-        history = new History();
+        history = new History(1000);
         System.out.println(getMenu());
         while(!exit && sc.hasNextLine()){
             System.out.println(parseLine(sc.nextLine()));
@@ -129,7 +129,7 @@ public class ConsoleApp {
         if(dblsList == null){
             message = "Incorrect parameters provided";
         }
-        return message+"\n";
+        return message.replace(".0","")+"\n";
     }
     /**
      * Parses a list of doubles from a string (skips the first one
@@ -145,6 +145,10 @@ public class ConsoleApp {
                     dbls.add(Double.parseDouble(history.getResult(Integer.parseInt(dblStrings[i].replace("!", "")))));
                 }
                 else{
+                    if(dblStrings[i].contains(".")){
+                        //Make sure that it doesn't have a decimal place
+                        return null;
+                    }
                     dbls.add(Double.parseDouble(dblStrings[i]));
                 }
             }
