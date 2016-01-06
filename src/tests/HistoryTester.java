@@ -72,7 +72,15 @@ public class HistoryTester {
     public void testClearHistoryEmpty(){
         
     }
-    
+    public void testTooLargeIndex(){
+        try{
+            myHistory.getResult(2000000);
+            fail();
+        }
+        catch(Exception e){
+            
+        }
+    }
     @Test
     public void testGetHistoryBadIndex(){        
         //This should throw an exception or something
