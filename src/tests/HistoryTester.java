@@ -47,7 +47,7 @@ public class HistoryTester {
             myHistory.addResult(""+i);
         }
         for(int i = 0; i<1000; i++){
-            assertEquals(i+1,myHistory.getResult(i+1));
+            assertEquals(i,myHistory.getResult(i+1));
         }
     }
     @Test
@@ -60,7 +60,7 @@ public class HistoryTester {
         
         //This should throw an exception or something
         try{
-            myHistory.getResult(0); 
+            myHistory.getResult(1); 
             fail(); 
         }
         catch(Exception e){
