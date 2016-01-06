@@ -13,11 +13,22 @@ public class HistoryTester {
     HistoryInterface myHistory;
     @Before
     public void setUp() throws Exception {
-        myHistory = new History(10);
+        myHistory = new History(20);
     }
 
     @After
     public void tearDown() throws Exception {
+    }
+    @Test
+    public void testNegativeHistorySize(){
+        myHistory = new History(-1);
+        String [] addFive = {"out","my","still","don't","grail"};
+        for(String result: addFive){
+            myHistory.addResult(result);
+        }
+        for(int i = 0; i<addFive.length; i++){
+            assertEquals(addFive[i],myHistory.getResult(i+1));
+        }
     }
     @Test
     public void testAddHistory(){
@@ -27,7 +38,7 @@ public class HistoryTester {
             myHistory.addResult(result);
         }
         for(int i = 0; i<results.length; i++){
-            assertEquals(results[i],myHistory.getResult(i));
+            assertEquals(results[i],myHistory.getResult(i+1));
         }
     }
     @Test
@@ -36,7 +47,7 @@ public class HistoryTester {
             myHistory.addResult(""+i);
         }
         for(int i = 0; i<1000; i++){
-            assertEquals(i+1,myHistory.getResult(i));
+            assertEquals(i+1,myHistory.getResult(i+1));
         }
     }
     @Test
@@ -48,8 +59,13 @@ public class HistoryTester {
         myHistory.clear();
         
         //This should throw an exception or something
-        myHistory.getResult(0); 
-        fail(); 
+        try{
+            myHistory.getResult(0); 
+            fail(); 
+        }
+        catch(Exception e){
+            
+        }
     }
     
     @Test
@@ -60,7 +76,12 @@ public class HistoryTester {
     @Test
     public void testGetHistoryBadIndex(){        
         //This should throw an exception or something
-        myHistory.getResult(0); 
-        fail(); 
+        try{
+            myHistory.getResult(0);
+            fail();
+        }
+        catch(Exception e){
+            
+        }
     }
 }
