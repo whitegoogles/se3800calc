@@ -23,9 +23,12 @@ public class ConsoleApp {
     private CalculatorInterface calculator;
     private HistoryInterface history;
     private boolean exit;
-    
+    private static final String command ="Calculator commands are: add, mul, div, sub, and fact.\n"+
+                                         "History commands are: clear, and hist.\n"+
+                                         "Program commands are: exit.\n";
     public static void main(String [] args){
         ConsoleApp app = new ConsoleApp();
+        app.startParsing();
     }
     /**
      * Creates the scanner and reads from it until
@@ -36,24 +39,15 @@ public class ConsoleApp {
         Scanner sc = new Scanner(System.in);
         calculator = new Calculator();
         history = new History(1000);
-        System.out.println(getMenu());
+        System.out.println(command);
         while(!exit && sc.hasNextLine()){
             System.out.println(parseLine(sc.nextLine()));
             if(!exit){
-                System.out.println(getMenu());
+                System.out.println(command);
             }
         }
     }
-    /**
-     * Returns the menu text;
-     * @return The text for the menu
-     */
-    public String getMenu(){
-        String command ="Calculator commands are: add,mul,div,sub, and fact.\n";
-        command+= "History commands are: clear, and hist.\n";
-        command+= "Program commands are: exit.\n";
-        return command;
-    }
+    
     /**
      * Parses a line into the appropriate command, executes the command,
      * and returns the result.
@@ -104,7 +98,7 @@ public class ConsoleApp {
                     dblsList = getDoubles(words);
                     if(dblsList!=null){
                         if(!dblsList.isEmpty()){
-                            message = ""+calculator.factorial(dblsList.get(0).longValue());
+                            message = ""+calculator.factorial(dblsList.get(0));
                             history.addResult(message);
                         }
                         else{
@@ -124,7 +118,10 @@ public class ConsoleApp {
                 }
             }
             catch(ParamsException pe){
-                message = "Not enough parameters provided";
+                message = pe.getMessage();
+            }
+            catch(NegativeException ne){
+                message = ne.getMessage();
             }
         }
         if(dblsList == null){

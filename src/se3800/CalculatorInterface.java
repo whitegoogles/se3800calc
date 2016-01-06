@@ -49,5 +49,5 @@ public interface CalculatorInterface {
 	 * @return The factorial of the provided number
 	 * @throws ParamsException
 	 */
-	public double factorial(double factorial) throws ParamsException;
+	public double factorial(double factorial) throws ParamsException,NegativeException;
 }

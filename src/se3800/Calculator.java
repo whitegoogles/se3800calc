@@ -64,15 +64,18 @@ public class Calculator implements CalculatorInterface{
 	/**
      * @see CalculatorInterface#factorial
      */
-	public double factorial(double factorial) throws ParamsException {
+	public double factorial(double factorial) throws NegativeException,ParamsException {
 	    if(factorial>0 && Double.isInfinite(factorial)){
 	        return Double.POSITIVE_INFINITY;
 	    }
 	    else if(Double.isNaN(factorial)){
 	        return Double.NaN;
 	    }
-	    else if(factorial<0 || Math.round(factorial)!=factorial){
+	    else if((!Double.isInfinite(factorial)) && Math.round(factorial)!=factorial){
 	        throw new ParamsException();
+	    }
+	    else if(factorial<0){
+	        throw new NegativeException();
 	    }
 	    else if(factorial == 0){
 	        return 1;
