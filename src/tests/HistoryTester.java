@@ -13,7 +13,7 @@ public class HistoryTester {
     HistoryInterface myHistory;
     @Before
     public void setUp() throws Exception {
-        myHistory = new History();
+        myHistory = new History(10);
     }
 
     @After
