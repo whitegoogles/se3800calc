@@ -700,11 +700,11 @@ public class CalculatorTester {
         try {
             myCalculator.factorial(testValue);
         } catch (ParamsException e) {
-            assert false;
+            fail();
         } catch (NegativeException e) {
-            assert true;
+            // it's good
         }
-        assert false;
+        fail();
     }
     
     @Test
@@ -728,11 +728,11 @@ public class CalculatorTester {
         try {
             myCalculator.factorial(testValue);
         } catch (ParamsException e) {
-            assert false;
+            fail();
         } catch (NegativeException e) {
-            assert true;
+            // it's good
         }
-        assert false;
+        fail();
     }
     
     @Test
@@ -741,11 +741,11 @@ public class CalculatorTester {
         try {
             myCalculator.factorial(testValue);
         } catch (ParamsException e) {
-            assert true;
+            // it's good
         } catch (NegativeException e) {
-            assert false;
+            fail();
         }
-        assert false;
+        fail();
     }
     
     @Test
@@ -755,9 +755,9 @@ public class CalculatorTester {
         try {
             myCalculator.add(doubles);
         } catch (ParamsException e) {
-            assert true;
+            // it's good
         }
-        assert false;
+        fail();
     }
 
 }
