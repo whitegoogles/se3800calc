@@ -4,18 +4,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
+ * This class manages a list of values to describe a history.
+ * The history has a set maximum number of values it can hold.
  * @author boddyn
- *
+ * @version 2016.01.05.1
  */
 public class History implements HistoryInterface {
     
-    private static final int MAX_NUM_VALUES = 10;
+    // The maximum number of values allowed for storage
+    private static int maxNumValues = 10;
     
+    // The structure that holds the values as strings
     private static List<String> history;
     
-    public History() {
+    /**
+     * Constructor
+     * Creates a history object, initializes the history, and sets the max number of values.
+     * @param maxNumValues  the maximum number of values allowed
+     */
+    public History(int maxNumValues) {
         history = new ArrayList<String>();
+        if (maxNumValues > 0) {
+            this.maxNumValues = maxNumValues;
+        }
     }
 
     /**
@@ -27,8 +38,13 @@ public class History implements HistoryInterface {
      */
     @Override
     public String getResult(int resultId) {
-     // TODO Auto-generated method stub
-        return null;
+        String retStr = "";
+        if (resultId < 1 || resultId > history.size()) {
+            throw new IndexOutOfBoundsException("Index " + resultId + 
+                    " is not between 1 and " + history.size() + ".");
+        }
+        retStr = history.get(resultId - 1);
+        return retStr;
     }
 
     /**
@@ -40,8 +56,13 @@ public class History implements HistoryInterface {
      */
     @Override
     public String addResult(String result) {
-        // TODO Auto-generated method stub
-        return null;
+        String removedStr = null;
+        if (history.size() == maxNumValues) {
+            removedStr = history.get(maxNumValues - 1);
+        }
+        history.add(0, result);
+        history.remove(history.size() - 1);
+        return removedStr;
     }
 
     /**
@@ -49,6 +70,6 @@ public class History implements HistoryInterface {
      */
     @Override
     public void clear() {
-        // TODO Auto-generated method stub
+        history.clear();
     }
 }
