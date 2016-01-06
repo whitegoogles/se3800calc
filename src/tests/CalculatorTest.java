@@ -19,7 +19,7 @@ import se3800.CalculatorInterface;
 /**
  * Tests the Calculator class
  * @author boddyn
- * @version 2016.01.05.1
+ * @version 2016.01.06.1
  */
 public class CalculatorTest {
     
@@ -703,11 +703,11 @@ public class CalculatorTest {
         try {
             myCalculator.factorial(testValue);
         } catch (ParamsException e) {
-            assert false;
+            fail();
         } catch (NegativeException e) {
-            assert true;
+            // it's good
         }
-        assert false;
+        fail();
     }
     
     @Test
@@ -731,11 +731,24 @@ public class CalculatorTest {
         try {
             myCalculator.factorial(testValue);
         } catch (ParamsException e) {
-            assert false;
+            fail();
         } catch (NegativeException e) {
-            assert true;
+            // it's good
         }
-        assert false;
+        fail();
+    }
+    
+    @Test
+    public void testFactorial7() {
+        Double testValue = new Double(4.5);
+        try {
+            myCalculator.factorial(testValue);
+        } catch (ParamsException e) {
+            // it's good
+        } catch (NegativeException e) {
+            fail();
+        }
+        fail();
     }
     
     @Test
@@ -745,9 +758,9 @@ public class CalculatorTest {
         try {
             myCalculator.add(doubles);
         } catch (ParamsException e) {
-            assert true;
+            // it's good
         }
-        assert false;
+        fail();
     }
 
 }
