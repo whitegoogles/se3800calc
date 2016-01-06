@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import se3800.Calculator;
 import se3800.CalculatorInterface;
+import se3800.NegativeException;
 import se3800.ParamsException;
 
 /**
@@ -657,6 +658,8 @@ public class CalculatorTester {
             actual = myCalculator.factorial(testValue);
         } catch (ParamsException e) {
             fail();
+        } catch (NegativeException e) {
+            fail();
         }
         assertEquals(expected, actual, 0.001);
     }
@@ -669,6 +672,8 @@ public class CalculatorTester {
         try {
             actual = myCalculator.factorial(testValue);
         } catch (ParamsException e) {
+            fail();
+        } catch (NegativeException e) {
             fail();
         }
         assertEquals(expected, actual, 0.001);
@@ -683,6 +688,8 @@ public class CalculatorTester {
             actual = myCalculator.factorial(testValue);
         } catch (ParamsException e) {
             fail();
+        } catch (NegativeException e) {
+            fail();
         }
         assertEquals(expected, actual, 0.001);
     }
@@ -693,6 +700,8 @@ public class CalculatorTester {
         try {
             myCalculator.factorial(testValue);
         } catch (ParamsException e) {
+            assert false;
+        } catch (NegativeException e) {
             assert true;
         }
         assert false;
@@ -707,6 +716,8 @@ public class CalculatorTester {
             actual = myCalculator.factorial(testValue);
         } catch (ParamsException e) {
             fail();
+        } catch (NegativeException e) {
+            fail();
         }
         assertEquals(expected, actual, 0.001);
     }
@@ -714,11 +725,11 @@ public class CalculatorTester {
     @Test
     public void testFactorial6() {
         Double testValue = new Double(-5);
-        Double expected = Double.NaN;
-        Double actual = Double.NaN;
         try {
-            actual = myCalculator.factorial(testValue);
+            myCalculator.factorial(testValue);
         } catch (ParamsException e) {
+            assert false;
+        } catch (NegativeException e) {
             assert true;
         }
         assert false;
