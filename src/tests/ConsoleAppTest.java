@@ -58,7 +58,6 @@ public void testGetHistoryWithParams() {
     console.parseLine("mult 1 2 3"); 
     console.parseLine("div"); 
     String[] hist = console.parseLine("hist thug *&^*&68176234128347162349786 18234712 378419284817234").split("\n");
-    System.out.println(hist.length);
     assertEquals("3: 6",hist[0]);
     assertEquals("2: -4",hist[1]);
     assertEquals("1: 6",hist[2]);
@@ -126,7 +125,6 @@ public void testHugeInputs(){
         String testLine = "fact";
         String expected = "Incorrect parameters provided\n";
         String actual = console.parseLine(testLine);
-        System.out.println(actual);
         assertTrue(expected.equals(actual));
     }
     
@@ -135,7 +133,6 @@ public void testHugeInputs(){
         String testLine = "add";
         String expected = "Provided parameters were incorrect\n";
         String actual = console.parseLine(testLine);
-        System.out.println(actual);
         assertTrue(expected.equals(actual));
     }
     
@@ -144,7 +141,6 @@ public void testHugeInputs(){
         String testLine = "exit";
         String expected = "Exiting...\n";
         String actual = console.parseLine(testLine);
-        System.out.println(actual);
         assertTrue(expected.equals(actual));
     }
     
@@ -153,7 +149,6 @@ public void testHugeInputs(){
         String testLine = "";
         String expected = "Command not recognized\n";
         String actual = console.parseLine(testLine);
-        System.out.println(actual);
         assertTrue(expected.equals(actual));
     }
     
@@ -162,7 +157,6 @@ public void testHugeInputs(){
         String testLine = "sub";
         String expected = "Provided parameters were incorrect\n";
         String actual = console.parseLine(testLine);
-        System.out.println(actual);
         assertTrue(expected.equals(actual));
     }
     
@@ -171,7 +165,6 @@ public void testHugeInputs(){
         String testLine = "mult";
         String expected = "Provided parameters were incorrect\n";
         String actual = console.parseLine(testLine);
-        System.out.println(actual);
         assertTrue(expected.equals(actual));
     }
     
@@ -180,7 +173,6 @@ public void testHugeInputs(){
         String testLine = "div";
         String expected = "Provided parameters were incorrect\n";
         String actual = console.parseLine(testLine);
-        System.out.println(actual);
         assertTrue(expected.equals(actual));
     }
     
@@ -189,7 +181,6 @@ public void testHugeInputs(){
         String testLine = "fact -3";
         String expected = "Parameters were negative\n";
         String actual = console.parseLine(testLine);
-        System.out.println(actual);
         assertTrue(expected.equals(actual));
     }
     
@@ -200,7 +191,6 @@ public void testHugeInputs(){
         String testLine = "sub !2 !1";
         String expected = "9\n";
         String actual = console.parseLine(testLine);
-        System.out.println(actual);
         assertTrue(expected.equals(actual));
     }
 }
