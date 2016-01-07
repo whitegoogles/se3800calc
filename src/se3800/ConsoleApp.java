@@ -21,15 +21,15 @@ import java.util.Scanner;
  * @version 2016.01.06.1
  */
 public class ConsoleApp {
-    
+
     private CalculatorInterface calculator;
-    
+
     private HistoryInterface history;
-    
+
     private boolean exit;
     private static final String command ="Calculator commands are: add, mult, div, sub, and fact.\n"+
-                                         "History commands are: clear, and hist.\n"+
-                                         "Program commands are: exit.\n";
+            "History commands are: clear, and hist.\n"+
+            "Program commands are: exit.\n";
     public static void main(String [] args){
         ConsoleApp app = new ConsoleApp();
         app.startParsing();
@@ -54,7 +54,7 @@ public class ConsoleApp {
             }
         }
     }
-    
+
     /**
      * Parses a line into the appropriate command, executes the command,
      * and returns the result.
@@ -118,7 +118,7 @@ public class ConsoleApp {
                     message = "Exiting...";
                     exit();
                     break;
-                //@author boddyn
+                    //@author boddyn
                 case "clear":
                     history.clear();
                     message = "History cleared";
@@ -126,7 +126,7 @@ public class ConsoleApp {
                 case "hist":
                     message = showHistory(history);
                     break;
-                    
+
                 }
             }
             catch(ParamsException pe){
@@ -189,7 +189,7 @@ public class ConsoleApp {
         }
         return hist;
     }
-    
+
     /**
      * Signals the program to quit.
      * @author daviesj

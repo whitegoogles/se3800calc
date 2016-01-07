@@ -22,7 +22,7 @@ public class HistoryTest {
     HistoryInterface myHistory;
     @Rule
     public Timeout globalTimeout = Timeout.seconds(20);
-    
+
     @Before
     public void setUp() throws Exception {
         myHistory = new History(20);
@@ -45,7 +45,7 @@ public class HistoryTest {
     @Test
     public void testAddHistory(){
         String [] results = {"mas","aig rean","ad audi","First","Chain",
-                             "1","2","12","x","aksdfj","kasdjf"}; 
+                "1","2","12","x","aksdfj","kasdjf"}; 
         for(String result: results){
             myHistory.addResult(result);
         }
@@ -70,14 +70,14 @@ public class HistoryTest {
             myHistory.addResult(a);
         }
         myHistory.clear();
-        
+
         //This should throw an exception or something
         try{
             myHistory.getResult(1); 
             fail(); 
         }
         catch(Exception e){
-            
+
         }
     }
     @Test
@@ -87,7 +87,7 @@ public class HistoryTest {
             fail();
         }
         catch(Exception e){
-            
+
         }
     }
     @Test
@@ -98,7 +98,7 @@ public class HistoryTest {
             fail();
         }
         catch(Exception e){
-            
+
         }
     }
     @Test
@@ -108,7 +108,7 @@ public class HistoryTest {
             fail();
         }
         catch(Exception e){
-            
+
         }
     }
     @Test
