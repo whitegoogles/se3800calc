@@ -42,6 +42,7 @@ public class ConsoleApp {
      * Creates the scanner and reads from it until
      * the exit command is issued. Note that
      * this will hang.
+     * @author daviesj
      */
     public void startParsing(){
         Scanner sc = new Scanner(System.in);
@@ -59,6 +60,7 @@ public class ConsoleApp {
      * and returns the result.
      * @param line A string of input from the user (or wherever).
      * @return The result of the command.
+     * @author daviesj
      */
     public String parseLine(String line){
         String [] words = line.trim().split(" ");
@@ -116,6 +118,7 @@ public class ConsoleApp {
                     message = "Exiting...";
                     exit();
                     break;
+                //@author boddyn
                 case "clear":
                     history.clear();
                     message = "History cleared";
@@ -143,6 +146,7 @@ public class ConsoleApp {
      * because its a command).
      * @param dblStrings The list of strings to parse into doubles
      * @return The doubles from the parsed strings
+     * @author daviesj
      */
     public List<Double> getDoubles(String [] dblStrings){
         List<Double> dbls = new ArrayList<Double>();
@@ -165,7 +169,12 @@ public class ConsoleApp {
         }
         return dbls;
     }
-    
+    /**
+     * 
+     * @param history
+     * @return
+     * @author boddyn
+     */
     private String showHistory(HistoryInterface history) {
         String hist = "";
         int i = 1;
@@ -183,6 +192,7 @@ public class ConsoleApp {
     
     /**
      * Signals the program to quit.
+     * @author daviesj
      */
     public void exit(){
         exit = true;

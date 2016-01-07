@@ -12,59 +12,72 @@ import se3800.ConsoleApp;
 public class ConsoleAppTest {
 
 ConsoleApp console;
-@Rule
-public Timeout globalTimeout = Timeout.seconds(1);
+/*
+ * Tests written by Josh
+ * I wrote most of ConsoleApp, so I tried to test just the things
+ * that I didn't write (or were kind of non-coverage/BVA tests).
+ */
+@Before
+public void setUp() throws Exception {
+    console = new ConsoleApp();
+}
+@Test
+public void testGetBadCommands(){
+    String [] badCommands = {"add1","sub2","first","12","eme","1234","1.2","asdfj","%&(*&(@#","","    ","thank you asdf"};
+    for(int i = 0; i<badCommands.length; i+=1){
+        assertEquals("Command not recognized\n",console.parseLine(badCommands[i]));
+    }
+}
+@Test
+public void testGetHistory() {
+    console.parseLine("add 1 2 3"); //Add some stuff to the history
+    console.parseLine("sub 1 2 3"); 
+    console.parseLine("mult 1 2 3"); 
+    console.parseLine("div"); 
+    String[] hist = console.parseLine("hist").split("\n");
+    assertEquals("3: 6",hist[0]);
+    assertEquals("2: -4",hist[1]);
+    assertEquals("1: 6",hist[2]);
+}
+@Test
+public void testClearHistory() {
+    console.parseLine("add 1 2 3"); //Add some stuff to the history
+    console.parseLine("sub 1 2 3"); 
+    assertEquals("History cleared",console.parseLine("clear").trim());
+}
 
-    @Before
-    public void setUp() throws Exception {
-        console = new ConsoleApp();
+@Test
+public void testClearHistoryWithParams() {
+    String message = console.parseLine("clear 1 2 3 4 5 6 7 ");
+    assertEquals("History cleared",message.trim());
+}
+@Test
+public void testGetHistoryWithParams() {
+    console.parseLine("add 1 2 3"); //Add some stuff to the history
+    console.parseLine("sub 1 2 3"); 
+    console.parseLine("mult 1 2 3"); 
+    console.parseLine("div"); 
+    String[] hist = console.parseLine("hist thug *&^*&68176234128347162349786 18234712 378419284817234").split("\n");
+    System.out.println(hist.length);
+    assertEquals("3: 6",hist[0]);
+    assertEquals("2: -4",hist[1]);
+    assertEquals("1: 6",hist[2]);
+}
+@Test
+public void testCommandCombinations(){
+    String [] commandCombinations = {"add sub mult","add div mult ","div mult add","sub div add","sub 1 2 div"};
+    for(int i = 0; i<commandCombinations.length; i++){
+        assertEquals("Incorrect parameters provided",console.parseLine(commandCombinations[i]).trim());
     }
-    @Test
-    public void testGetBadCommands(){
-        String [] badCommands = {"add1","sub2","first","12","eme","1234","1.2","asdfj","%&(*&(@#","","    ","thank you asdf"};
-        for(int i = 0; i<badCommands.length; i+=1){
-            assertEquals("Command not recognized\n",console.parseLine(badCommands[i]));
-        }
+}
+@Test
+public void testHugeInputs(){
+    String bigString ="big";
+    for(int i = 0; i<10; i++){
+        bigString+=bigString;
     }
-    @Test
-    public void testGetHistory() {
-        console.parseLine("add 1 2 3"); //Add some stuff to the history
-        console.parseLine("sub 1 2 3"); 
-        console.parseLine("div 1 2 3"); 
-        console.parseLine("mult 1 a c"); 
-        console.parseLine("sub");
-        String[] hist = console.parseLine("hist").split("\n");
-        assertEquals("3: 6",hist[0].trim());
-        assertEquals("2: -4",hist[1].trim());
-        assertEquals("1: 0",hist[2].trim());
-    }
-    @Test
-    public void testClearHistory() {
-        console.parseLine("add 1,2,3"); //Add some stuff to the history
-        console.parseLine("sub 1,2,3"); 
-        console.parseLine("clear");
-        assertEquals("",console.parseLine("hist").trim());
-    }
-
-    @Test
-    public void testClearHistoryWithParams() {
-        console.parseLine("add 1,2,3"); //Add some stuff to the history
-        console.parseLine("sub 1,2,3"); 
-        console.parseLine("clear 1 2 3 a '' meme");
-        assertEquals("",console.parseLine("hist").trim());
-    }
-    @Test
-    public void testGetHistoryWithParams() {
-        console.parseLine("add 1 2 3"); //Add some stuff to the history
-        console.parseLine("sub 1 2 3"); 
-        console.parseLine("div 1 2 3"); 
-        console.parseLine("mult 1 a c"); 
-        console.parseLine("sub");
-        String[] hist = console.parseLine("hist 1 meme 2 3 asdfkja 980&&&%()!A!@!1").split("\n");
-        assertEquals("3: 6",hist[0].trim());
-        assertEquals("2: -4",hist[1].trim());
-        assertEquals("1: 0",hist[2].trim());
-    }
+    assertEquals("Command not recognized",console.parseLine(bigString).trim());
+}
     /***************************************************/
     /*     parseLine tests written by Nick Boddy       */
     /***************************************************/
