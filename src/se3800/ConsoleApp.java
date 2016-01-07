@@ -27,7 +27,7 @@ public class ConsoleApp {
     private HistoryInterface history;
     
     private boolean exit;
-    private static final String command ="Calculator commands are: add, mul, div, sub, and fact.\n"+
+    private static final String command ="Calculator commands are: add, mult, div, sub, and fact.\n"+
                                          "History commands are: clear, and hist.\n"+
                                          "Program commands are: exit.\n";
     public static void main(String [] args){
