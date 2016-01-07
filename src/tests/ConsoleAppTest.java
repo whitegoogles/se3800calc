@@ -126,7 +126,6 @@ public class ConsoleAppTest {
         String testLine = "fact";
         String expected = "Incorrect parameters provided\n";
         String actual = console.parseLine(testLine);
-        System.out.println(actual);
         assertTrue(expected.equals(actual));
     }
 
@@ -135,7 +134,6 @@ public class ConsoleAppTest {
         String testLine = "add";
         String expected = "Provided parameters were incorrect\n";
         String actual = console.parseLine(testLine);
-        System.out.println(actual);
         assertTrue(expected.equals(actual));
     }
 
@@ -144,7 +142,6 @@ public class ConsoleAppTest {
         String testLine = "exit";
         String expected = "Exiting...\n";
         String actual = console.parseLine(testLine);
-        System.out.println(actual);
         assertTrue(expected.equals(actual));
     }
 
@@ -153,7 +150,6 @@ public class ConsoleAppTest {
         String testLine = "";
         String expected = "Command not recognized\n";
         String actual = console.parseLine(testLine);
-        System.out.println(actual);
         assertTrue(expected.equals(actual));
     }
 
@@ -162,7 +158,6 @@ public class ConsoleAppTest {
         String testLine = "sub";
         String expected = "Provided parameters were incorrect\n";
         String actual = console.parseLine(testLine);
-        System.out.println(actual);
         assertTrue(expected.equals(actual));
     }
 
@@ -171,7 +166,6 @@ public class ConsoleAppTest {
         String testLine = "mult";
         String expected = "Provided parameters were incorrect\n";
         String actual = console.parseLine(testLine);
-        System.out.println(actual);
         assertTrue(expected.equals(actual));
     }
 
@@ -180,7 +174,6 @@ public class ConsoleAppTest {
         String testLine = "div";
         String expected = "Provided parameters were incorrect\n";
         String actual = console.parseLine(testLine);
-        System.out.println(actual);
         assertTrue(expected.equals(actual));
     }
 
@@ -189,7 +182,6 @@ public class ConsoleAppTest {
         String testLine = "fact -3";
         String expected = "Parameters were negative\n";
         String actual = console.parseLine(testLine);
-        System.out.println(actual);
         assertTrue(expected.equals(actual));
     }
 
@@ -200,7 +192,6 @@ public class ConsoleAppTest {
         String testLine = "sub !2 !1";
         String expected = "9\n";
         String actual = console.parseLine(testLine);
-        System.out.println(actual);
         assertTrue(expected.equals(actual));
     }
 }
