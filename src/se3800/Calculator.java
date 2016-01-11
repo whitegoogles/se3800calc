@@ -16,7 +16,7 @@ public class Calculator implements CalculatorInterface{
         paramsCheck(doubles);
         double dblSum = 0;
         for(double curDbl: doubles){
-            dblSum+=curDbl*4;
+            dblSum+=curDbl;
         }
         return dblSum;
     }
