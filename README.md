@@ -8,7 +8,7 @@ Java Version: JDK 7
 
 Dependencies: JUnit 4.12
 
-Build Tools: Maven
+Build Tools: Maven 3.3.9
 
 Commands: 
 * To build, use `mvn install` (this also runs the tests)
