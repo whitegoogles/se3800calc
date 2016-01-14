@@ -1,5 +1,5 @@
 # se3800calc
-The purpsoe of this project is that it is an SE3800 assignment that has a fully 
+The purpose of this project is that it is an SE3800 assignment that has a fully 
 featured calculator command line application with lots of included tests.
 
 Group Members: Josh Davies and Nicholas Boddy
