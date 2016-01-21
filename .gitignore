@@ -6,3 +6,5 @@
 *.orig
 /target/
 /.settings/
+.idea/
+*.iml
